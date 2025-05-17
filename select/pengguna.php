@@ -8,12 +8,12 @@ header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
 
-$query = "SELECT * FROM pengguna WHERE id = ?";
+$query = "SELECT username, email, nomor_hp, foto, total_pemasukan, total_pengeluaran FROM pengguna WHERE id = ?";
 $stmt = mysqli_prepare($conn, $query);
 
 if ($stmt) {
     $id = isset($_GET['id']) ? $_GET['id'] : null;
-    
+
     mysqli_stmt_bind_param($stmt, 'i', $id);
     if (mysqli_stmt_execute($stmt)) {
         $result = mysqli_stmt_get_result($stmt);
